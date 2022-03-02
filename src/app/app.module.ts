@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { MainCenterComponent } from './main-center/main-center.component';
 import { CardComponent } from './card/card.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarMenuComponent,
     MainCenterComponent,
-    CardComponent
+    CardComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
