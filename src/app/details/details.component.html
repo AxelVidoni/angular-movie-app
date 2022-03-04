@@ -10,21 +10,30 @@
       </div>
       <div class="col-xs-12 col-sm-8">
         <h2>{{film.original_title}}</h2>
-        <h3>{{film.overview}}</h3>
+        <h3>{{film.tagline}}</h3>
         <p class="meta-wrap">
           <span class="rating">rating: {{film.vote_average}} </span>
-          <span class="meta">{{film.original_language}} / 148 min. / {{film.release_date}}</span>
+          <span class="meta">{{film.original_language}} / {{film.runtime}} min. / {{film.release_date}}</span>
         </p>
 
-        <ul class="genres">
-          <li>Action</li>
-          <li>Adventure</li>
-          <li>Science-Fiction</li>
+        <ul class="genres"*ngFor="let genre of genres" >
+          <li>{{genre.name}}</li>
         </ul>
     </div>
     <!-- Fin partie spécifique home page -->
   
   </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+    <label for="rating">Note film : </label>
+<input id="rating" name="rating" type="number" placeholder="5" formControlName="rating" min="0" max="10"/>
+<label for="text">Texte du commentaire : </label>
+<input id="text" name="text" type="text" placeholder="Film interressant mais un peu long..." formControlName="text"/>
+
+
+    <button class="button" type="submit">Ajout commentaire</button>
+
+  </form>
 </article>
   </div>
 

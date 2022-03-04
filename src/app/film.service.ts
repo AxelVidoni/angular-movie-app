@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Film } from './type';
+import { Film, Genre, Comment } from './type';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
@@ -11,6 +11,8 @@ export class FilmService {
 
   serverUrl = 'https://movie-api.benoithubert.me';
   filmsPath = '/movies';
+  genresPath = '/genres';
+  commentPath = '/comments';
 
   constructor(private http: HttpClient) { 
     this.handleError = this.handleError.bind(this)
@@ -50,4 +52,17 @@ export class FilmService {
     return this.http.get<Film>(`${this.serverUrl}${this.filmsPath}/${id}`).pipe(
       catchError(this.handleError));
   }
+
+  getAllGenres(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(`${this.serverUrl}${this.genresPath}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createComment(id : number ,commentData : Partial<Comment>) : Observable<Comment> {
+    return this.http.post<Comment>(`${this.serverUrl}${this.filmsPath}/${id}${this.commentPath}`, commentData).pipe(
+      catchError(this.handleError));
+  }
 }
+
+
