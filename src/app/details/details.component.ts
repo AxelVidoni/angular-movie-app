@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Film,Genre } from '../type';
+import { Film,Genre, Comment } from '../type';
 import { FilmService } from '../film.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,12 +14,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class DetailsComponent implements OnInit {
   film?: Film
   genres?: Genre[];
+  comments?: Comment[];
 
   commentForm : FormGroup;
 
-  constructor(private route: ActivatedRoute, private filmService : FilmService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private filmService : FilmService, private fb: FormBuilder, private router : Router) {
     this.commentForm = this.fb.group({
-      rating: '',
+      rating: '5',
       text: ''
     })
     
@@ -32,7 +34,7 @@ export class DetailsComponent implements OnInit {
       next: (film) => {
         this.film = film
         this.genres = film?.genres;
-        console.log(film?.comments)
+        this.comments = film?.comments;
       }
     })
     
@@ -40,11 +42,13 @@ export class DetailsComponent implements OnInit {
 
   addComment() {
     const commentData = this.commentForm.value;
+    const id =Number(this.route.snapshot.paramMap.get('id')); 
     console.log("test : ", this.commentForm.value);
-    this.filmService.createComment(Number(this.route.snapshot.paramMap.get('id')), commentData)
+    this.filmService.createComment(id, commentData)
     .subscribe( {
       next: (comment) => {
         console.log(`Commentaire créé avec l'id ${comment.id}`);
+        this.comments?.push(comment)
       },
       error: (error) => {
         console.error('Could not create comment', error);

@@ -19,6 +19,17 @@
         <ul class="genres"*ngFor="let genre of genres" >
           <li>{{genre.name}}</li>
         </ul>
+
+        <table>
+          <tr>
+              <td>Note</td>
+              <td>Commentaire</td>
+          </tr>
+          <tr *ngFor="let comment of comments">
+              <td>{{comment.rating}}</td>
+              <td>{{comment.text}}</td>
+          </tr>
+       </table>
     </div>
     <!-- Fin partie spécifique home page -->
   
@@ -26,7 +37,7 @@
 
   <form [formGroup]="commentForm" (ngSubmit)="addComment()">
     <label for="rating">Note film : </label>
-<input id="rating" name="rating" type="number" placeholder="5" formControlName="rating" min="0" max="10"/>
+<input id="rating" name="rating"  type="number"  formControlName="rating" min="0" max="10"/>
 <label for="text">Texte du commentaire : </label>
 <input id="text" name="text" type="text" placeholder="Film interressant mais un peu long..." formControlName="text"/>
 

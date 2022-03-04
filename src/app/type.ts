@@ -35,7 +35,7 @@ export class Film {
   status !: string;
   tagline !: string;
 
-  comments !: string[];
+  comments !: Comment[];
   
 }
 
