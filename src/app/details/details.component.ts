@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Film,Genre, Comment } from '../type';
+import { Film,Genre, Comment, Companies } from '../type';
 import { FilmService } from '../film.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ export class DetailsComponent implements OnInit {
   film?: Film
   genres?: Genre[];
   comments?: Comment[];
+  companies?: Companies[];
 
   commentForm : FormGroup;
 
@@ -35,6 +36,8 @@ export class DetailsComponent implements OnInit {
         this.film = film
         this.genres = film?.genres;
         this.comments = film?.comments;
+        this.companies = film?.production_companies;
+        console.log(this.comments)
       }
     })
     
