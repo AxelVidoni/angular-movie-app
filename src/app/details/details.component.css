@@ -61,3 +61,25 @@
   {
       border: 1px solid black;
   }
+
+  .commentaires {
+    /* padding-left: 0; */
+    text-align: center;
+    /* display: flex; */
+  }
+  
+  .commentaires li {
+    list-style-type: none;
+    text-align: center;
+    margin-right: 1em;
+  }
+
+  .companies {
+    padding-left: 0;
+    display: flex;
+  }
+  
+  .companies li {
+    list-style-type: none;
+    margin-right: 1em;
+  }
