@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   genres?: Genre[];
   comments?: Comment[];
   companies?: Companies[];
+  error= '';
 
   commentForm : FormGroup;
 
@@ -55,7 +56,7 @@ export class DetailsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Could not create comment', error);
-        
+        this.error = error;
       }
     })
   }
