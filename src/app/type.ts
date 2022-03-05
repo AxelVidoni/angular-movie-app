@@ -1,3 +1,5 @@
+//J'ai choisi de faire une classe avec tout les attributs que peux renvoyer une requete HTPP, afin de pouvoir tous les utiliser en cas de nécessité
+
 export class Film {
   adult !: boolean;
   genre_ids !: number[];
@@ -12,7 +14,6 @@ export class Film {
   vote_average !: number;
   vote_count !: number;
   poster_path !: string;
-  // description!: string;
   backdrop_path !: string;
 
   //partie details d'un film
